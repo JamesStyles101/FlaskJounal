@@ -12,29 +12,57 @@
     <link rel="stylesheet" href="" />
   </head>
   <body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <!-- Links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/newjournal">New Journal</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/journals">Journals</a>
+        </li>
+      </ul>
+    </nav>
     <div class="container">
-      <thead>
-				<tr>
-				  <th>Date</th>
-					<th>Title</th>
-          <th>Content</th>
-          <th>Author</th>
-          <th>Tag</th>
-				</tr>
-			</thead>
-			<tbody>
-			<tr>
-					<td></td>
-					<td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-				</tr>
-		</tbody>
-	</table>
-      <h1>Daily Progress</h1>
-      <h4>Daily Goals</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Title</th>
+            <th style="width: 20%">Content</th>
+            <th>Content</th>
+            <th>Author</th>
+            <th>Tag</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for j in journals %}
+          <tr>
+            <td>{{j["date"]}}</td>
+            <td>{{j["title"]}}</td>
+            <td>{{j["content"]}}</td>
+            <td>{{j["author"]}}</td>
+            <td>{{j["emotion"]}}</td>
+            <td>{{j["tag"]}}</td>
+            <td>
+              <a
+                href="/edit/{{j['id']}}"
+                class="btn btn-info btn-sm"
+                role="button"
+                >Edit</a
+              >
+              <a
+                href="/delete/{{j['id']}}"
+                class="btn btn-danger btn-sm"
+                role="button"
+                >Delete</a
+              >
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
   </body>
 </html>
